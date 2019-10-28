@@ -35,4 +35,13 @@
         </menu>
     </item>
 
+    <item android:title="Demo">
+        <menu>
+            <item
+                android:id="@+id/nav_poll"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_poll" />"
+        </menu>
+    </item>
+
 </menu>

@@ -40,4 +40,10 @@
         android:name="com.example.hackathon6_app.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_poll"
+        android:name="com.example.hackathon6_app.ui.poll.PollFragment"
+        android:label="@string/menu_poll"
+        tools:layout="@layout/fragment_poll" />
 </navigation>
