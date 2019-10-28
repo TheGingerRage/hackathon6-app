@@ -18,7 +18,6 @@ import com.example.hackathon6_app.bl.Profile;
 import com.example.hackathon6_app.ui.QR.QRFragment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -83,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Log.e("Scan", "Scanned: " + result.getContents());
 
-                QRFragment qrFragment = (QRFragment) this.getSupportFragmentManager().findFragmentById(R.id.nav_qr);
-                Profile profile = DeserializeProfile(result.getContents());
+               QRFragment qrFragment = (QRFragment) this.getSupportFragmentManager().findFragmentById(R.id.nav_qr);
+               Profile profile = DeserializeProfile(result.getContents());
 
-                qrFragment.ProcessNewConnection(profile);
-
+               if(profile != null){
+                   qrFragment.ProcessNewConnection(profile);
+               }
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
@@ -98,10 +98,9 @@ public class MainActivity extends AppCompatActivity {
     private Profile DeserializeProfile(String jsonProfile){
         if(!jsonProfile.isEmpty()){
             ObjectMapper objectMapper = new ObjectMapper();
-            ObjectReader objectReader = objectMapper.reader();
 
             try{
-                Profile profile = (Profile) objectReader.readValue(jsonProfile);
+                Profile profile = objectMapper.readValue(jsonProfile, Profile.class);
                 return profile;
             }
             catch(JsonProcessingException e){

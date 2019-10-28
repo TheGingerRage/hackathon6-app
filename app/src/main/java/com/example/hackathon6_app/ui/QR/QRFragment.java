@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +35,7 @@ public class QRFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         qrViewModel = ViewModelProviders.of(this).get(QRFragmentViewModel.class);
-        root = inflater.inflate(R.layout.fragment_share, container, false);
+        root = inflater.inflate(R.layout.fragment_qr, container, false);
 
         ImageView qrCodeImg = root.findViewById(R.id.qrCodeImage);
         ScanButton = root.findViewById(R.id.scanButton);
@@ -73,7 +71,7 @@ public class QRFragment extends Fragment {
                 integrator.initiateScan();
             }
         });
-        
+
         return root;
     }
 
@@ -133,16 +131,16 @@ public class QRFragment extends Fragment {
     }
 
     public void ProcessNewConnection(Profile newConnection){
-        LinearLayout scanLayout = root.findViewById(R.id.scanResult);
-
-        TextView nameText = root.findViewById(R.id.nameTextView);
-        TextView titleText = root.findViewById(R.id.titleValueTextView);
-        TextView companyText = root.findViewById(R.id.companyValueTextView);
-
-        nameText.setText(newConnection.FirstName + " " + newConnection.LastName);
-        titleText.setText(newConnection.Title);
-        companyText.setText(newConnection.Company);
-
-        scanLayout.setVisibility(View.VISIBLE);
+//        LinearLayout scanLayout = root.findViewById(R.id.scanResult);
+//
+//        TextView nameText = root.findViewById(R.id.nameTextView);
+//        TextView titleText = root.findViewById(R.id.titleValueTextView);
+//        TextView companyText = root.findViewById(R.id.companyValueTextView);
+//
+//        nameText.setText(newConnection.FirstName + " " + newConnection.LastName);
+//        titleText.setText(newConnection.Title);
+//        companyText.setText(newConnection.Company);
+//
+//        scanLayout.setVisibility(View.VISIBLE);
     }
 }
