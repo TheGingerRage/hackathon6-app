@@ -14,8 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+
 import com.example.hackathon6_app.R;
-import com.example.hackathon6_app.bl.Profile;
+import com.example.hackathon6_app.profile.ProfileCard;
 import com.example.hackathon6_app.ui.new_connection.NewConnection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,13 +46,17 @@ public class QRFragment extends Fragment {
 
         final String profileText = "stephen.middaugh@ncino.com::4234831361::@stephenm::I am a software developer in Wilmington, NC.";
 
-        Profile userProfile = new Profile();
-        userProfile.FirstName = "Stephen";
-        userProfile.LastName = "Middaugh";
-        userProfile.Company = "nCino";
-        userProfile.TwitterHandle = "@middaughs";
-        userProfile.Email = "stephen.middaugh@ncino.com";
-        userProfile.AboutMe = "I am a software engineer living in Wilmington, NC";
+        ProfileCard userProfile = new ProfileCard(
+            "Stephen",
+            "Middaugh",
+            "nCino",
+            "Developer",
+            "stephen.middaugh@ncino.com",
+            "Wilmington, NC",
+            "I am a software engineer living in Wilmington, NC",
+            new ArrayList(Arrays.asList("@middaughs"))
+        );
+
 
         final String jsonProfile = SerializeProfile(userProfile);
 
@@ -84,7 +91,7 @@ public class QRFragment extends Fragment {
         return root;
     }
 
-    String SerializeProfile(Profile profile){
+    String SerializeProfile(ProfileCard profile){
         if(profile == null){
             return "";
         }

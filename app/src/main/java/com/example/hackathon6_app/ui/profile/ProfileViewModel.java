@@ -1,20 +1,18 @@
 package com.example.hackathon6_app.ui.profile;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.widget.ImageView;
-import android.widget.ListView;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.profile.ProfileCard;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 
 public class ProfileViewModel extends ViewModel {
+
+
 
     private MutableLiveData<String> mName;
     private MutableLiveData<String> mTitle;
@@ -41,6 +39,7 @@ public class ProfileViewModel extends ViewModel {
 
 
     public ProfileViewModel() {
+
         mName = new MutableLiveData<>();
         mName.setValue("Becka Jackson");
 
@@ -65,11 +64,14 @@ public class ProfileViewModel extends ViewModel {
         mPointCount = new MutableLiveData<>();
         mActivities = new MutableLiveData<ArrayList<String>>();
 
+
+
         events = 0;
         engagements = 0;
         // dummy up connections, events, engagements
         ProfileCard dummyConnection = (new ProfileCard(
-            "Byron Motchell",
+            "Byron",
+            "Motchell",
             "nCino, Inc.",
             "Developer",
             "byron.motchell@ncino.com",
@@ -84,9 +86,7 @@ public class ProfileViewModel extends ViewModel {
         addEngagement();
     }
 
-    public LiveData<String> getName() {
-        return mName;
-    }
+
 
     public LiveData<String> getTitle() {
         return mTitle;
@@ -165,9 +165,11 @@ public class ProfileViewModel extends ViewModel {
         return engagements;
     }
 
+
     public void addConnection(ProfileCard connection) {
         ProfileCard newConnection = new ProfileCard(
-                connection.getName(),
+                connection.getFirstName(),
+                connection.getLastName(),
                 connection.getCompany(),
                 connection.getTitle(),
                 connection.getLocation(),
@@ -178,8 +180,9 @@ public class ProfileViewModel extends ViewModel {
         if (connections == null) {
             connections = new ArrayList<ProfileCard>();
         }
+        connections.add(newConnection);
         mConnections.setValue(connections);
-        addActivity("ProfileCard", connection.getName());
+        addActivity("ProfileCard", connection.getFullName());
     }
 
     public void addEvent() {

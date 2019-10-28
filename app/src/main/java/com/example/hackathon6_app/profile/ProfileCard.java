@@ -4,7 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProfileCard {
-    String name;
+    String firstName;
+    String lastName;
     String company;
     String title;
     String email;
@@ -13,15 +14,22 @@ public class ProfileCard {
     ArrayList<String> socialLinks;
 
 
+    public ProfileCard() {
+        this.socialLinks = new ArrayList<String>();
+    }
+
     public ProfileCard(
-            String name,
+            String firstName,
+            String lastName,
             String company,
             String title,
             String email,
             String location,
             String about,
             ArrayList<String> socialLinks) {
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+
         this.company = company;
         this.title = title;
         this.email = email;
@@ -33,9 +41,19 @@ public class ProfileCard {
         }
     }
 
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public String getFullName()
+    {
+        return firstName + ' ' + lastName;
     }
 
     public String getCompany()
@@ -64,6 +82,5 @@ public class ProfileCard {
         return socialLinks;
     }
 }
-
 
 

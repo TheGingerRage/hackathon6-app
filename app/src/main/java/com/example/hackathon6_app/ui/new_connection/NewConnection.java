@@ -13,45 +13,54 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.bl.Profile;
+import com.example.hackathon6_app.profile.ProfileCard;
+import com.example.hackathon6_app.ui.profile.ProfileViewModel;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
 import java.io.IOException;
 
+
+
 public class NewConnection extends Fragment {
 
-    private Profile NewConnectionProfile = null;
+    private ProfileCard NewConnectionProfile = null;
 
     public NewConnection(String newConnectionString){
         if(!newConnectionString.isEmpty()) {
             NewConnectionProfile = DeserializeProfile(newConnectionString);
         }
-    }
+     }
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         NewConnectionViewModel newConnectionViewModel = ViewModelProviders.of(this).get(NewConnectionViewModel.class);
         View root = inflater.inflate(R.layout.fragment_share, container, false);
 
+        ProfileViewModel profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        profileViewModel.addConnection(NewConnectionProfile);
+
+
         TextView nameTextView = root.findViewById(R.id.nameTextView);
         TextView titleTextView = root.findViewById(R.id.titleValueTextView);
         TextView companyTextView = root.findViewById(R.id.companyValueTextView);
 
-        nameTextView.setText(NewConnectionProfile.FirstName + " " + NewConnectionProfile.LastName);
+        nameTextView.setText(NewConnectionProfile.getFirstName() + " " + NewConnectionProfile.getLastName());
         titleTextView.setText("Hard Coded Title Value");
-        companyTextView.setText(NewConnectionProfile.Company);
+        companyTextView.setText(NewConnectionProfile.getCompany());
 
         return root;
     }
 
-    private Profile DeserializeProfile(String jsonProfile){
+    private ProfileCard DeserializeProfile(String jsonProfile){
         if(!jsonProfile.isEmpty()){
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectReader objectReader = objectMapper.reader();
 
             try{
-                Profile profile = (Profile) objectReader.readValue(jsonProfile);
+                ProfileCard profile = (ProfileCard) objectReader.readValue(jsonProfile);
                 return profile;
             }
             catch(JsonProcessingException e){
