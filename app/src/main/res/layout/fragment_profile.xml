@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--ListView is not working when nested in ScrollView-->
+<!--<ScrollView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.andandroidroid.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content">-->
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.andandroidroid.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:paddingLeft="8sp"
+        android:paddingRight="8sp"
+        android:paddingBottom="16sp">
+
+        <!--  Profile Pane-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profileTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/LabelText"
+                />
+            <TextView
+                android:id="@+id/profileTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:gravity="center_vertical"
+                style="@style/BodyText"
+            />
+
+            <TextView
+                android:id="@+id/profileCompanyLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/LabelText"
+            />
+            <TextView
+                android:id="@+id/companyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:gravity="center_vertical"
+                style="@style/BodyText"
+            />
+
+            <TextView
+                android:id="@+id/profileLocationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/LabelText"
+            />
+            <TextView
+                android:id="@+id/profileLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:gravity="center_vertical"
+                style="@style/BodyText"
+            />
+
+            <TextView
+                android:id="@+id/profileEmailLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/LabelText"
+            />
+            <TextView
+                android:id="@+id/profileEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:gravity="center_vertical"
+                android:autoLink="web|email"
+                android:textColorLink="@color/colorPrimary"
+                style="@style/BodyText"
+            />
+
+            <TextView
+                android:id="@+id/socialLinksLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/LabelText"
+            />
+            <ListView
+                android:id="@+id/socialLinks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="0dp">
+            </ListView>
+
+            <TextView
+                android:id="@+id/profileAboutLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/LabelText"
+            />
+            <TextView
+                android:id="@+id/profileAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                style="@style/BodyText"
+                android:paddingBottom="8sp"
+            />
+
+        </LinearLayout>
+
+
+        <!--    Influence Pane-->
+        <LinearLayout
+            android:id="@+id/influencePane"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            >
+            <LinearLayout
+                android:id="@+id/influenceHeader"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingRight="8sp"
+                android:paddingLeft="8sp"
+                android:layout_weight="5"
+                >
+                <TextView
+                    android:id="@+id/influenceHeaderLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/HeaderText"
+                    android:layout_weight="2"
+                    />
+                <ImageView
+                    android:id="@+id/influenceBadgeImage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+
+                    />
+                <TextView
+                    android:id="@+id/influenceBadgeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textEnd"
+                    style="@style/LabelText"
+                    android:layout_weight="1"
+
+                    />
+                <TextView
+                    android:id="@+id/influenceBadgePoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/LabelText"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+
+
+            <GridLayout
+                android:id="@+id/influence_grid"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="2"
+                android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/influenceConnectionLabel"
+                android:layout_columnWeight="1"
+                android:text="Connections"
+                style="@style/LabelText"
+                />
+            <TextView
+                android:id="@+id/influenceEventLabel"
+                android:layout_columnWeight="1"
+                android:text="Events"
+                style="@style/LabelText"
+                />
+            <TextView
+                android:id="@+id/influenceEngagementLabel"
+                android:layout_columnWeight="1"
+                android:text="Engagements"
+                style="@style/LabelText"
+                />
+
+            <TextView
+                android:id="@+id/influenceConnectionsCount"
+                android:layout_columnWeight="1"
+                style="@style/BodyText"
+                />
+            <TextView
+                android:id="@+id/influenceEventsCount"
+                android:layout_columnWeight="1"
+                style="@style/BodyText"
+                />
+            <TextView
+                android:id="@+id/influenceEngagementsCount"
+                android:layout_columnWeight="1"
+                style="@style/BodyText"
+                />
+
+
+            </GridLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border"
+            android:paddingTop="8sp"
+            android:paddingRight="8sp"
+            android:paddingLeft="8sp"
+            >
+            <TextView
+                android:id="@+id/activityHeaderLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/HeaderText"
+                >
+
+            </TextView>
+            <ListView
+                android:id="@+id/profileActivityPane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:divider="#f1b643"
+                android:dividerHeight="1dp">
+            </ListView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+<!--</ScrollView>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

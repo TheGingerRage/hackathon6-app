@@ -17,4 +17,27 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="HeaderText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#2F4F4F</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">12sp</item>
+        <item name="android:paddingLeft">8sp</item>
+        <item name="android:paddingRight">8sp</item>
+    </style>
+
+    <style name="LabelText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#808080</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingTop">8sp</item>
+        <item name="android:paddingLeft">8sp</item>
+    </style>
+
+    <style name="BodyText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">#2F4F4F</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingLeft">8sp</item>
+    </style>
+
+
 </resources>
