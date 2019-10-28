@@ -29,6 +29,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 
+import java.io.IOException;
+
 public class QRFragment extends Fragment {
     public static final int QRcodeWidth = 350 ;
     private QRFragmentViewModel qrViewModel;
@@ -60,6 +62,17 @@ public class QRFragment extends Fragment {
 
 
         final String jsonProfile = SerializeProfile(userProfile);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        Profile p;
+        try{
+            p = mapper.readValue(jsonProfile, Profile.class);
+        }
+        catch(IOException e){
+
+        }
+
 
         try{
             Bitmap bitmap = TextToImageEncode(jsonProfile);
@@ -140,17 +153,5 @@ public class QRFragment extends Fragment {
         return bitmap;
     }
 
-    public void ProcessNewConnection(Profile newConnection){
-//        LinearLayout scanLayout = root.findViewById(R.id.scanResult);
-//
-//        TextView nameText = root.findViewById(R.id.nameTextView);
-//        TextView titleText = root.findViewById(R.id.titleValueTextView);
-//        TextView companyText = root.findViewById(R.id.companyValueTextView);
-//
-//        nameText.setText(newConnection.FirstName + " " + newConnection.LastName);
-//        titleText.setText(newConnection.Title);
-//        companyText.setText(newConnection.Company);
-//
-//        scanLayout.setVisibility(View.VISIBLE);
-    }
+
 }
