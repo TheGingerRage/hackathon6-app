@@ -2,7 +2,6 @@ package com.example.hackathon6_app.ui.poll;
 
 import android.os.CountDownTimer;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;

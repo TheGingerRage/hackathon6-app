@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.hackathon6_app.ui.PlaceholderFragment;
 import com.example.hackathon6_app.ui.poll.PollFragment;
+import com.example.hackathon6_app.ui.questions.QuestionsFragment;
 import com.google.android.material.tabs.TabLayout;
 
 public class ProfileActivity extends NavigationActivity {
@@ -71,6 +72,7 @@ public class ProfileActivity extends NavigationActivity {
                 case 0:
                     return new PollFragment();
                 case 1:
+                    return new QuestionsFragment();
                 case 2:
                 case 3:
                 case 4:
@@ -85,6 +87,7 @@ public class ProfileActivity extends NavigationActivity {
                 case 0:
                     return "Poll Sample";
                 case 1:
+                    return "Questions Sample";
                 case 2:
                 case 3:
                 case 4:

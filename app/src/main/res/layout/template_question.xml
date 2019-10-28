@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginRight="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@color/blue">
+            <TextView
+                android:id="@+id/text_question"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:layout_marginBottom="40px"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"/>
+
+            <TextView
+                android:id="@+id/text_votes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginBottom="40px"
+                android:text="0"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:gravity="right"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_question"
+        android:layout_marginTop="-60px"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal"
+        android:translationZ="10dp">
+        <Button
+            android:id="@+id/button_upvote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Up" />
+
+        <Button
+            android:id="@+id/button_downvote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Down" />
+    </LinearLayout>
+
+</RelativeLayout>
