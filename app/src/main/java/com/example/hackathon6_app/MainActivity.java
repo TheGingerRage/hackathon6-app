@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +17,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hackathon6_app.bl.Profile;
-import com.example.hackathon6_app.ui.QR.QRFragment;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -82,17 +83,35 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Log.e("Scan", "Scanned: " + result.getContents());
 
-               QRFragment qrFragment = (QRFragment) this.getSupportFragmentManager().findFragmentById(R.id.nav_qr);
+
+                TextView tview = findViewById(R.id.nameTextView);
+                tview.setText("hello, world!");
+
                Profile profile = DeserializeProfile(result.getContents());
 
                if(profile != null){
-                   qrFragment.ProcessNewConnection(profile);
+                   ProcessNewConnection(profile);
                }
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void ProcessNewConnection(Profile newConnection){
+        LinearLayout scanLayout = findViewById(R.id.scanResult);
+
+
+        TextView nameText = findViewById(R.id.nameTextView);
+        TextView titleText = findViewById(R.id.titleValueTextView);
+        TextView companyText = findViewById(R.id.companyValueTextView);
+
+        nameText.setText(newConnection.FirstName + " " + newConnection.LastName);
+        titleText.setText(newConnection.Title);
+        companyText.setText(newConnection.Company);
+
+        scanLayout.setVisibility(View.VISIBLE);
     }
 
     private Profile DeserializeProfile(String jsonProfile){
@@ -112,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        return null;
+       Profile p = new Profile();
+        p.FirstName = "Something went ";
+        p.LastName = "wrong.";
+
+        return p;
     }
 }
