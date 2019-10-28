@@ -1,10 +1,13 @@
 package com.example.hackathon6_app.ui.poll;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +17,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.hackathon6_app.R;
-import com.example.hackathon6_app.poll.Poll;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,30 +26,28 @@ public class PollFragment extends Fragment {
     private static final int POLL_TIME_IN_MINUTES = 1;
 
     private PollViewModel pollViewModel;
-    private LinearLayout graphContainer;
+    private LinearLayout labelContainer, graphContainer;
+    private Spinner loader;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         pollViewModel = ViewModelProviders.of(this).get(PollViewModel.class);
         View root = inflater.inflate(R.layout.fragment_poll, container, false);
 
-        pollViewModel.initializePoll("How cool is this?", this.getResources());
 
-        final TextView timerTextView = root.findViewById(R.id.text_countdown_timer);
-        pollViewModel.getTimerText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                timerTextView.setText(s);
-            }
-        });
-
-        final TextView topicTextView = root.findViewById(R.id.text_topic);
-        topicTextView.setText(pollViewModel.getTopic());
-
+        labelContainer = root.findViewById(R.id.container_labels);
         graphContainer = root.findViewById(R.id.container_graph);
-        initializeGraph();
+        loader = root.findViewById(R.id.loader);
 
-        for (final Poll.PollItem pollItem : pollViewModel.getPollItems()) {
+        if (pollViewModel.getPollItems().isEmpty()) {
+            pollViewModel.initializeSamplePoll();
+        }
+
+        initializePoll();
+
+        for (final PollViewModel.PollItem pollItem : pollViewModel.getPollItems()) {
             pollItem.observe(this, new Observer<Integer>() {
                 @Override
                 public void onChanged(Integer count) {
@@ -65,7 +65,20 @@ public class PollFragment extends Fragment {
         c.add(Calendar.MINUTE, POLL_TIME_IN_MINUTES);
 
         try {
-            pollViewModel.startPoll(c.getTime());
+            if (!pollViewModel.isRunning()) {
+                pollViewModel.startPoll("How cool is this?", c.getTime());
+            }
+
+            final TextView topicTextView = root.findViewById(R.id.text_topic);
+            topicTextView.setText(pollViewModel.getTopic());
+
+            final TextView timerTextView = root.findViewById(R.id.text_countdown_timer);
+            pollViewModel.getTimerText().observe(this, new Observer<String>() {
+                @Override
+                public void onChanged(@Nullable String s) {
+                    timerTextView.setText(s);
+                }
+            });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -73,18 +86,72 @@ public class PollFragment extends Fragment {
         return root;
     }
 
-    private void initializeGraph() {
-        ArrayList<Poll.PollItem> items = pollViewModel.getPollItems();
+    private void initializePoll() {
+        labelContainer.removeAllViews();
+        graphContainer.removeAllViews();
+
+        ArrayList<PollViewModel.PollItem> items = pollViewModel.getPollItems();
+
         graphContainer.setWeightSum(items.size());
 
-        for (Poll.PollItem item : items) {
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, 1);
-            layoutParams.weight = 1;
-            layoutParams.setMargins(5, 0, 5, 0);
+        for (PollViewModel.PollItem item : items) {
+            View root = getLayoutInflater().inflate(R.layout.template_label, labelContainer, false);
+            View key = root.findViewById(R.id.view_key);
+            key.setBackgroundResource(item.color);
+            TextView label = root.findViewById(R.id.text_label);
+            label.setTextColor(root.getResources().getColor(item.color));
+            label.setText(item.text);
+            labelContainer.addView(root);
 
-            View v = new View(graphContainer.getContext());
-            v.setBackgroundResource(item.color);
-            graphContainer.addView(v, layoutParams);
+            LinearLayout.LayoutParams barLayoutParams = new LinearLayout.LayoutParams(0, 1);
+            barLayoutParams.weight = 1;
+            barLayoutParams.setMargins(5, 0, 5, 0);
+
+            View bar = new View(graphContainer.getContext());
+            bar.setBackgroundResource(item.color);
+            graphContainer.addView(bar, barLayoutParams);
+        }
+
+        new ViewSwapper(loader, graphContainer).execute(3);
+    }
+
+    public static class ViewSwapper extends AsyncTask<Integer, Void, Void> {
+
+        private View toHide;
+        private View toShow;
+
+        public ViewSwapper(View toHide, View toShow) {
+            this.toHide = toHide;
+            this.toShow = toShow;
+
+            this.toHide.setVisibility(View.VISIBLE);
+            this.toShow.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            int waitCount = integers[0];
+
+            for (int i = 0; i < waitCount; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            doIt();
+        }
+
+        private void doIt() {
+            this.toHide.setVisibility(View.GONE);
+            this.toShow.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -14,4 +14,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="menu_poll">Polling Sample</string>
+    <string name="menu_profile">Profile</string>
+
+    <string name="activity_profile">Profile</string>
 </resources>
