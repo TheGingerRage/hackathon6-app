@@ -16,7 +16,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.hackathon6_app.bl.Profile;
+//import com.example.hackathon6_app.bl.Profile;
+import com.example.hackathon6_app.profile.ProfileCard;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView tview = findViewById(R.id.nameTextView);
                 tview.setText("hello, world!");
 
-               Profile profile = DeserializeProfile(result.getContents());
+               ProfileCard profile = DeserializeProfile(result.getContents());
 
                if(profile != null){
                    ProcessNewConnection(profile);
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void ProcessNewConnection(Profile newConnection){
+    private void ProcessNewConnection(ProfileCard newConnection){
         LinearLayout scanLayout = findViewById(R.id.scanResult);
 
 
@@ -107,19 +108,19 @@ public class MainActivity extends AppCompatActivity {
         TextView titleText = findViewById(R.id.titleValueTextView);
         TextView companyText = findViewById(R.id.companyValueTextView);
 
-        nameText.setText(newConnection.FirstName + " " + newConnection.LastName);
-        titleText.setText(newConnection.Title);
-        companyText.setText(newConnection.Company);
+        nameText.setText(newConnection.firstName + " " + newConnection.lastName);
+        titleText.setText(newConnection.title);
+        companyText.setText(newConnection.company);
 
         scanLayout.setVisibility(View.VISIBLE);
     }
 
-    private Profile DeserializeProfile(String jsonProfile){
+    private ProfileCard DeserializeProfile(String jsonProfile){
         if(!jsonProfile.isEmpty()){
             ObjectMapper objectMapper = new ObjectMapper();
 
             try{
-                Profile profile = objectMapper.readValue(jsonProfile, Profile.class);
+                ProfileCard profile = objectMapper.readValue(jsonProfile, ProfileCard.class);
                 return profile;
             }
             catch(JsonProcessingException e){
@@ -131,9 +132,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-       Profile p = new Profile();
-        p.FirstName = "Something went ";
-        p.LastName = "wrong.";
+       ProfileCard p = new ProfileCard();
+        p.firstName = "Something went ";
+        p.lastName = "wrong.";
 
         return p;
     }
