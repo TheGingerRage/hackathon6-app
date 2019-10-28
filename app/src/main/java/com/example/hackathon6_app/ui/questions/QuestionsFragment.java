@@ -113,13 +113,11 @@ public class QuestionsFragment extends Fragment {
         this.questionsViewModel.addQuestion("Nick", "Do you know the muffin man?");
 
         DummyQuestion[] questions = new DummyQuestion[] {
-            //new DummyQuestion("Nick", "Do you know the muffin man?"),
-            new DummyQuestion("Bryan", "Why won't Nick stop talking about the muffin man?")
+            new DummyQuestion("Bryan", "Why won't Nick stop talking about the muffin man?"),
+            new DummyQuestion("Tracy", "Can we delete other people's questions?")
         };
 
         new DummyQuestionGenerator(this.questionsViewModel).execute(questions);
-
-        //this.questionsViewModel.addQuestion("Bryan", "Why won't Nick stop talking about the muffin man?");
     }
 
     private static int getPreviousVoteCount(TextView total) {
