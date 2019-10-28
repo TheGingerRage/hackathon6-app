@@ -5,4 +5,12 @@
     <color name="colorAccent">#D81B60</color>
     <color name="QRCodeBlackColor">#000000</color>
     <color name="QRCodeWhiteColor">#ffffff</color>
+    <color name="blue">#0092C7</color>
+    <color name="blue_dark">#00759F</color>
+    <color name="green">#85BE40</color>
+    <color name="red">#BA202E</color>
+    <color name="yellow">#F1B643</color>
+
+    <color name="orange">#FFA500</color>
+    <color name="purple">#800080</color>
 </resources>
