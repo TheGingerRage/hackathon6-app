@@ -102,16 +102,27 @@ public class MainActivity extends AppCompatActivity {
     private void ProcessNewConnection(Profile newConnection){
         LinearLayout scanLayout = findViewById(R.id.scanResult);
 
-
+        scanLayout.setVisibility(View.VISIBLE);
+        TextView congratsText = findViewById(R.id.congratsText);
         TextView nameText = findViewById(R.id.nameTextView);
+        TextView title = findViewById(R.id.titleLabelTextView);
         TextView titleText = findViewById(R.id.titleValueTextView);
+        TextView company = findViewById(R.id.companyLabelTextView);
         TextView companyText = findViewById(R.id.companyValueTextView);
+
+        congratsText.setVisibility(View.VISIBLE);
+
+        title.setVisibility(View.VISIBLE);
+        company.setVisibility(View.VISIBLE);
+
+        titleText.setVisibility(View.VISIBLE);
+        companyText.setVisibility(View.VISIBLE);
 
         nameText.setText(newConnection.FirstName + " " + newConnection.LastName);
         titleText.setText(newConnection.Title);
         companyText.setText(newConnection.Company);
 
-        scanLayout.setVisibility(View.VISIBLE);
+
     }
 
     private Profile DeserializeProfile(String jsonProfile){

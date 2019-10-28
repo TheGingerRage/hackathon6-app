@@ -8,13 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/border"
         android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="479dp"
+            android:layout_height="415dp"
+            android:layout_margin="10dp"
             android:background="@drawable/border"
             android:orientation="vertical">
 
@@ -41,6 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:background="@drawable/border"
             android:orientation="vertical">
 
@@ -50,46 +51,52 @@
                 android:layout_height="wrap_content"
                 android:text="Scan a Code" />
 
+            <TextView
+                android:id="@+id/congratsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Congrats! You've made a new connection!"
+                android:visibility="invisible" />
+
+
             <LinearLayout
                 android:id="@+id/scanResult"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/border"
                 android:orientation="vertical"
-                android:visibility="invisible">
+                android:paddingLeft="5dp"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:id="@+id/nameTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="namePlaceHolder" />
+                    android:text="namePlaceHolder"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="50dp"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/titleLabelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Title:" />
+                            android:text="Title:"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/titleValueTextView"
@@ -102,15 +109,15 @@
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="visible">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/companyLabelTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Company:" />
+                            android:text="Company:"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/companyValueTextView"

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +42,9 @@ public class QRFragment extends Fragment {
 
         ImageView qrCodeImg = root.findViewById(R.id.qrCodeImage);
         ScanButton = root.findViewById(R.id.scanButton);
+
+        LinearLayout scanResultLayout = root.findViewById(R.id.scanResult);
+        scanResultLayout.setVisibility(View.INVISIBLE);
 
         Profile userProfile = new Profile();
         userProfile.FirstName = "Stephen";
