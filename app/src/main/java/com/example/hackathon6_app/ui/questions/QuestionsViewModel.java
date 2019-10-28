@@ -15,9 +15,9 @@ public class QuestionsViewModel extends ViewModel {
         questions.setValue(new ArrayList<Question>());
     }
 
-    public void addQuestion(String text) {
+    public void addQuestion(String who ,String what) {
         ArrayList<Question> curr = questions.getValue();
-        curr.add(new Question(text));
+        curr.add(new Question(who, what));
         questions.setValue(curr);
     }
 
@@ -26,12 +26,13 @@ public class QuestionsViewModel extends ViewModel {
     }
 
     public static class Question {
-        public String text;
+        public String who, what;
         private MutableLiveData<Boolean> addressed;
         private MutableLiveData<Integer> up, down;
 
-        public Question(String text) {
-            this.text = text;
+        public Question(String who, String what) {
+            this.who = who;
+            this.what = what;
             this.addressed = new MutableLiveData<>();
             this.addressed.setValue(false);
             this.up = new MutableLiveData<>();
