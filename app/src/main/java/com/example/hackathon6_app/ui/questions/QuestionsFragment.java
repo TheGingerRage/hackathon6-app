@@ -1,6 +1,7 @@
 package com.example.hackathon6_app.ui.questions;
 
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.hackathon6_app.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class QuestionsFragment extends Fragment {
@@ -109,7 +111,15 @@ public class QuestionsFragment extends Fragment {
 
     private void addDummyQuestions() {
         this.questionsViewModel.addQuestion("Nick", "Do you know the muffin man?");
-        this.questionsViewModel.addQuestion("Bryan", "Why won't Nick stop talking about the muffin man?");
+
+        DummyQuestion[] questions = new DummyQuestion[] {
+            //new DummyQuestion("Nick", "Do you know the muffin man?"),
+            new DummyQuestion("Bryan", "Why won't Nick stop talking about the muffin man?")
+        };
+
+        new DummyQuestionGenerator(this.questionsViewModel).execute(questions);
+
+        //this.questionsViewModel.addQuestion("Bryan", "Why won't Nick stop talking about the muffin man?");
     }
 
     private static int getPreviousVoteCount(TextView total) {
@@ -122,5 +132,42 @@ public class QuestionsFragment extends Fragment {
             totalString = "+" + totalString;
         }
         return totalString;
+    }
+
+    private static class DummyQuestionGenerator extends AsyncTask<DummyQuestion, DummyQuestion, Void> {
+        QuestionsViewModel viewModel;
+
+        public DummyQuestionGenerator(QuestionsViewModel viewModel) {
+            this.viewModel = viewModel;
+        }
+
+        @Override
+        protected void onProgressUpdate(DummyQuestion... questions) {
+            viewModel.addQuestion(questions[0].who, questions[0].what);
+        }
+
+        @Override
+        protected Void doInBackground(DummyQuestion... questions) {
+            for (DummyQuestion question : questions) {
+                try {
+                    Thread.sleep(5000);
+                    publishProgress(question);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+    }
+
+    private static class DummyQuestion {
+        public String who;
+        public String what;
+
+        public DummyQuestion(String who, String what) {
+            this.who = who;
+            this.what = what;
+        }
     }
 }
