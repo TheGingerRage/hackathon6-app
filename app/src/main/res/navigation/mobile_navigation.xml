@@ -40,4 +40,16 @@
         android:name="com.example.hackathon6_app.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_qr"
+        android:name="com.example.hackathon6_app.ui.QR.QRFragment"
+        android:label="My Code"
+        tools:layout="@layout/fragment_qr"/>
+
+    <fragment
+        android:id="@+id/nav_new_connection"
+        android:name="com.example.hackathon6_app.ui.new_connection.NewConnection"
+        android:label="New Connection"
+        tools:layout="@layout/fragment_new_connection"/>
 </navigation>
