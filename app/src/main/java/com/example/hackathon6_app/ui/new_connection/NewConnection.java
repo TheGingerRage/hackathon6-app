@@ -47,9 +47,9 @@ public class NewConnection extends Fragment {
         TextView titleTextView = root.findViewById(R.id.titleValueTextView);
         TextView companyTextView = root.findViewById(R.id.companyValueTextView);
 
-        nameTextView.setText(NewConnectionProfile.getFirstName() + " " + NewConnectionProfile.getLastName());
+        nameTextView.setText(NewConnectionProfile.firstName + " " + NewConnectionProfile.lastName);
         titleTextView.setText("Hard Coded Title Value");
-        companyTextView.setText(NewConnectionProfile.getCompany());
+        companyTextView.setText(NewConnectionProfile.company);
 
         return root;
     }

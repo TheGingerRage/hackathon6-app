@@ -139,6 +139,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/border"
+            android:layout_marginBottom="8sp"
             android:paddingTop="8sp"
             android:paddingBottom="8sp"
             >
@@ -255,7 +256,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:divider="#f1b643"
+                android:divider="#F1B643"
                 android:dividerHeight="1dp">
             </ListView>
 

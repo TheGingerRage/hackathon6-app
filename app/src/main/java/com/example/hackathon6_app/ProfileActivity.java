@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.hackathon6_app.ui.PlaceholderFragment;
 import com.example.hackathon6_app.ui.poll.PollFragment;
+import com.example.hackathon6_app.ui.profile.ProfileFragment;
 import com.example.hackathon6_app.ui.questions.QuestionsFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -74,6 +75,7 @@ public class ProfileActivity extends NavigationActivity {
                 case 1:
                     return new QuestionsFragment();
                 case 2:
+                    return new ProfileFragment();
                 case 3:
                 case 4:
                 default:
@@ -89,6 +91,7 @@ public class ProfileActivity extends NavigationActivity {
                 case 1:
                     return "Questions Sample";
                 case 2:
+                    return "Profile";
                 case 3:
                 case 4:
                 default:

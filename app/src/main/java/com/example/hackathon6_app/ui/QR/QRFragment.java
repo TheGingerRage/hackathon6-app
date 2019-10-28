@@ -31,12 +31,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.io.IOException;
 
+
 public class QRFragment extends Fragment {
     public static final int QRcodeWidth = 350 ;
     private QRFragmentViewModel qrViewModel;
     private Button ScanButton;
     View root;
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,18 +57,17 @@ public class QRFragment extends Fragment {
             "Developer",
             "stephen.middaugh@ncino.com",
             "Wilmington, NC",
-            "I am a software engineer living in Wilmington, NC",
+            "I ama software engineer living in Wilmington, NC",
             new ArrayList(Arrays.asList("@middaughs"))
         );
-
 
         final String jsonProfile = SerializeProfile(userProfile);
 
         ObjectMapper mapper = new ObjectMapper();
 
-        Profile p;
+        ProfileCard p;
         try{
-            p = mapper.readValue(jsonProfile, Profile.class);
+            p = mapper.readValue(jsonProfile, ProfileCard.class);
         }
         catch(IOException e){
 

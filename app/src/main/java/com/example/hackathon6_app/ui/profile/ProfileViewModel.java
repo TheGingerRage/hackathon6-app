@@ -7,23 +7,24 @@ import androidx.lifecycle.ViewModel;
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.profile.ProfileCard;
 
+
 import java.util.Arrays;
 import java.util.ArrayList;
 
 public class ProfileViewModel extends ViewModel {
 
+    public String profileFirstName;
+    public String profileLastName;
+    public String profileTitle;
+    public String profileCompany;
+    public String profileLocation;
+    public String profileEmail;
+    public String profileAbout;
+    public ArrayList<String> profileSocialLinks;
 
-
-    private MutableLiveData<String> mName;
-    private MutableLiveData<String> mTitle;
-    private MutableLiveData<String> mCompany;
-    private MutableLiveData<String> mLocation;
-    private MutableLiveData<String> mEmail;
-    private MutableLiveData<String[]> mSocialLinks;
-    private MutableLiveData<String> mAboutMe;
-    private MutableLiveData<Integer> mPointCount;
-    private MutableLiveData<ArrayList<String>> mActivities;
-    private MutableLiveData<ArrayList<ProfileCard>> mConnections = new MutableLiveData<ArrayList<ProfileCard>>();
+    public MutableLiveData<Integer> mPointCount;
+    public MutableLiveData<ArrayList<String>> mActivities;
+    public MutableLiveData<ArrayList<ProfileCard>> mConnections = new MutableLiveData<ArrayList<ProfileCard>>();
     private Integer events;
     private Integer engagements;
 
@@ -40,31 +41,10 @@ public class ProfileViewModel extends ViewModel {
 
     public ProfileViewModel() {
 
-        mName = new MutableLiveData<>();
-        mName.setValue("Becka Jackson");
-
-        mTitle = new MutableLiveData<>();
-        mTitle.setValue("Technical Writer");
-
-        mCompany = new MutableLiveData<>();
-        mCompany.setValue("nCino");
-
-        mLocation = new MutableLiveData<>();
-        mLocation.setValue("Wilmington, NC");
-
-        mEmail = new MutableLiveData<>();
-        mEmail.setValue("becka.jackson@ncino.com");
-
-//        mSocialLinks = new MutableLiveData<>();
-//        mSocialLinks.setValue(socials);
-
-        mAboutMe = new MutableLiveData<>();
-        mAboutMe.setValue("I write for the nCino IQ team. I love dogs and my favorite season is fall.");
+        loadDummyProfile();
 
         mPointCount = new MutableLiveData<>();
         mActivities = new MutableLiveData<ArrayList<String>>();
-
-
 
         events = 0;
         engagements = 0;
@@ -87,21 +67,10 @@ public class ProfileViewModel extends ViewModel {
     }
 
 
+    public void updateProfile(ProfileCard userProfile) {
 
-    public LiveData<String> getTitle() {
-        return mTitle;
     }
-    public LiveData<String> getCompany() {
-        return mCompany;
-    }
-    public LiveData<String> getLocation() {
-        return mLocation;
-    }
-    public LiveData<String> getEmail() {
-        return mEmail;
-    }
-    public String[] getSocialLinks() { return socials; }
-    public LiveData<String> getAboutMe() { return mAboutMe; }
+
 
     public LiveData<ArrayList<String>> getActivities() {
         return mActivities;
@@ -168,21 +137,22 @@ public class ProfileViewModel extends ViewModel {
 
     public void addConnection(ProfileCard connection) {
         ProfileCard newConnection = new ProfileCard(
-                connection.getFirstName(),
-                connection.getLastName(),
-                connection.getCompany(),
-                connection.getTitle(),
-                connection.getLocation(),
-                connection.getEmail(),
-                connection.getAboutMe(),
-                connection.getSocialLinks());
+                connection.firstName,
+                connection.lastName,
+                connection.company,
+                connection.title,
+                connection.location,
+                connection.email,
+                connection.about,
+                connection.socialLinks);
+
         ArrayList<ProfileCard> connections = mConnections.getValue();
         if (connections == null) {
             connections = new ArrayList<ProfileCard>();
         }
         connections.add(newConnection);
         mConnections.setValue(connections);
-        addActivity("ProfileCard", connection.getFullName());
+        addActivity("ProfileCard", connection.firstName + ' ' + connection.lastName);
     }
 
     public void addEvent() {
@@ -215,6 +185,19 @@ public class ProfileViewModel extends ViewModel {
         }
         mActivities.setValue(activities);
         calculatePoints();
+    }
+
+    private void loadDummyProfile() {
+        this.profileFirstName = "Tracy";
+        this.profileLastName = "Bragdon";
+        this.profileCompany = "nCino";
+        this.profileLocation = "Wilmington, NC";
+        this.profileTitle = "developer";
+        this.profileEmail = "tracy.bragdon@ncino.com";
+        this.profileAbout =  "I love ice cream and sweep rowing";
+        this.profileSocialLinks = new ArrayList(Arrays.asList("https://www.linkedin.com/in/tracybragdon/"));
+
+
     }
 
 }
