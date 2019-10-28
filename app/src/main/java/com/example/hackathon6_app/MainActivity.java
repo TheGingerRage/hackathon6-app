@@ -14,11 +14,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.hackathon6_app.bl.Profile;
+import com.example.hackathon6_app.ui.QR.QRFragment;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,15 +83,36 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Log.e("Scan", "Scanned: " + result.getContents());
 
-                //TextView scanResultsTextBox = this.findViewById(R.id.scanResultText);
+                QRFragment qrFragment = (QRFragment) this.getSupportFragmentManager().findFragmentById(R.id.nav_qr);
+                Profile profile = DeserializeProfile(result.getContents());
 
+                qrFragment.ProcessNewConnection(profile);
 
-
-                //scanResultsTextBox.setText(result.getContents());
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private Profile DeserializeProfile(String jsonProfile){
+        if(!jsonProfile.isEmpty()){
+            ObjectMapper objectMapper = new ObjectMapper();
+            ObjectReader objectReader = objectMapper.reader();
+
+            try{
+                Profile profile = (Profile) objectReader.readValue(jsonProfile);
+                return profile;
+            }
+            catch(JsonProcessingException e){
+                // do some error handling
+            }
+            catch(IOException e){
+                // do some generic error handling
+            }
+
+        }
+
+        return null;
     }
 }

@@ -7,4 +7,5 @@ public class Profile {
     public String Email;
     public String TwitterHandle;
     public String AboutMe;
+    public String Title;
 }
