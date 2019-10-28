@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.bl.Profile;
+import com.example.hackathon6_app.bl.StaticResources;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -46,16 +47,16 @@ public class QRFragment extends Fragment {
         LinearLayout scanResultLayout = root.findViewById(R.id.scanResult);
         scanResultLayout.setVisibility(View.INVISIBLE);
 
-        Profile userProfile = new Profile();
-        userProfile.FirstName = "Stephen";
-        userProfile.LastName = "Middaugh";
-        userProfile.Company = "nCino";
-        userProfile.TwitterHandle = "@middaughs";
-        userProfile.Email = "stephen.middaugh@ncino.com";
-        userProfile.AboutMe = "I am a software engineer living in Wilmington, NC";
-        userProfile.Title = "Software Developer";
+//        Profile userProfile = new Profile();
+//        userProfile.FirstName = "Stephen";
+//        userProfile.LastName = "Middaugh";
+//        userProfile.Company = "nCino";
+//        userProfile.TwitterHandle = "@middaughs";
+//        userProfile.Email = "stephen.middaugh@ncino.com";
+//        userProfile.AboutMe = "I am a software engineer living in Wilmington, NC";
+//        userProfile.Title = "Software Developer";
 
-        final String jsonProfile = SerializeProfile(userProfile);
+        final String jsonProfile = SerializeProfile(StaticResources.Main_Profile);
 
         ObjectMapper mapper = new ObjectMapper();
 
