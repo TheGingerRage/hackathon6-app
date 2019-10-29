@@ -82,20 +82,20 @@ public class ProfileFragment extends Fragment {
         updateEventCountView(root);
         updateEngagementCountView(root);
 
-//        tracker.mConnections.observe(this, new Observer<ArrayList<ProfileCard>>() {
-//            @Override
-//            public void onChanged(ArrayList<ProfileCard> connections) {
-//                if (connections.isEmpty()) {
-//                    return;
-//                }
-//
-// //               activityAdapter.notifyDataSetChanged();
-//
-//                updateConnectionCountView(root);
-//                updateBadgeViews(root);
-//
-//            }
-//        });
+        tracker.mConnections.observe(this, new Observer<ArrayList<ProfileCard>>() {
+            @Override
+            public void onChanged(ArrayList<ProfileCard> connections) {
+                if (connections.isEmpty()) {
+                    return;
+                }
+
+ //               activityAdapter.notifyDataSetChanged();
+
+                updateConnectionCountView(root);
+                updateBadgeViews(root);
+
+            }
+        });
 
 
         return root;
