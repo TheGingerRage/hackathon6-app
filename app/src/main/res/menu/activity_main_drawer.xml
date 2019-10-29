@@ -25,40 +25,14 @@
             android:icon="@drawable/ic_menu_speakers"
             android:title="@string/menu_speakers" />
         <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_qrcode"
-            android:title="@string/menu_share" />
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_portfolio"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/nav_profile_creator"
+            android:icon="@drawable/ic_menu_user"
+            android:title="Create Profile"/>
 
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
-            <item
-                android:id="@+id/nav_qr"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="My Code"/>
-            <item
-                android:id="@+id/nav_profile"
-                android:icon="@drawable/ic_menu_person_outline"
-                android:title="@string/menu_profile" />
-            <item
-                android:id="@+id/nav_profile_creator"
-                android:title="Create Profile"/>
-
-        </menu>
-    </item>
-
-    <item android:title="Demo">
-        <menu>
-            <item
-                android:id="@+id/nav_poll"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/menu_poll" />"
-        </menu>
-    </item>
 
 </menu>

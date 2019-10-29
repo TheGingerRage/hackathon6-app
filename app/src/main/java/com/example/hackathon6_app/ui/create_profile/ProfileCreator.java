@@ -37,6 +37,7 @@ public class ProfileCreator extends Fragment {
                 EditText email = root.findViewById(R.id.profileEmail);
                 EditText location = root.findViewById(R.id.profileLocation);
                 EditText socialLinks = root.findViewById(R.id.profileSocialLinks);
+                EditText aboutMe = root.findViewById(R.id.profileAboutMe);
                 
                 StaticResources.Main_Profile.firstName = firstName.getText().toString();
                 StaticResources.Main_Profile.lastName = lastName.getText().toString();
@@ -45,6 +46,7 @@ public class ProfileCreator extends Fragment {
                 StaticResources.Main_Profile.email = email.getText().toString();
                 StaticResources.Main_Profile.location = location.getText().toString();
                 StaticResources.Main_Profile.socialLinks = ParseSocialLinks(socialLinks.getText().toString());
+                StaticResources.Main_Profile.about = aboutMe.getText().toString();
             }
         });
 

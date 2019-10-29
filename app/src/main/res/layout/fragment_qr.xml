@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="415dp"
+            android:layout_height="361dp"
             android:layout_margin="10dp"
             android:background="@drawable/border"
             android:orientation="vertical">
@@ -31,8 +31,9 @@
 
             <ImageView
                 android:id="@+id/qrCodeImage"
-                android:layout_width="match_parent"
-                android:layout_height="255dp"
+                android:layout_width="291dp"
+                android:layout_height="179dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="-100dp"
                 app:srcCompat="@color/zxing_custom_possible_result_points" />
 
