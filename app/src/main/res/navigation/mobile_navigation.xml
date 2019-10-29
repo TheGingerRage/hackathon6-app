@@ -28,11 +28,10 @@
         android:name="com.example.hackathon6_app.ui.tools.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
-    <fragment
+    <activity
         android:id="@+id/nav_profile"
-        android:name="com.example.hackathon6_app.ui.profile.ProfileFragment"
-        android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:name="com.example.hackathon6_app.ProfileActivity"
+        android:label="@string/menu_profile" />
 
     <fragment
         android:id="@+id/nav_share"
