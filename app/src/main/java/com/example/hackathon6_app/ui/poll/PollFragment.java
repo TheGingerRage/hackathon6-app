@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class PollFragment extends Fragment {
 
-    private static final int POLL_TIME_IN_MINUTES = 1;
+    private static final int POLL_TIME_IN_SECONDS = 30;
 
     private PollViewModel pollViewModel;
     private LinearLayout labelContainer, graphContainer;
@@ -35,7 +35,6 @@ public class PollFragment extends Fragment {
 
         pollViewModel = ViewModelProviders.of(this).get(PollViewModel.class);
         View root = inflater.inflate(R.layout.fragment_poll, container, false);
-
 
         labelContainer = root.findViewById(R.id.container_labels);
         graphContainer = root.findViewById(R.id.container_graph);
@@ -62,7 +61,7 @@ public class PollFragment extends Fragment {
         }
 
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MINUTE, POLL_TIME_IN_MINUTES);
+        c.add(Calendar.SECOND, POLL_TIME_IN_SECONDS);
 
         try {
             if (!pollViewModel.isRunning()) {
@@ -99,13 +98,12 @@ public class PollFragment extends Fragment {
             View key = root.findViewById(R.id.view_key);
             key.setBackgroundResource(item.color);
             TextView label = root.findViewById(R.id.text_label);
-            label.setTextColor(root.getResources().getColor(item.color));
             label.setText(item.text);
             labelContainer.addView(root);
 
             LinearLayout.LayoutParams barLayoutParams = new LinearLayout.LayoutParams(0, 1);
             barLayoutParams.weight = 1;
-            barLayoutParams.setMargins(5, 0, 5, 0);
+            barLayoutParams.setMargins(15, 0, 15, 0);
 
             View bar = new View(graphContainer.getContext());
             bar.setBackgroundResource(item.color);

@@ -34,10 +34,10 @@ public class QuestionsFragment extends Fragment {
 
         if (questionsViewModel.questions.getValue().isEmpty()) {
             addDummyQuestions();
-        }
-
-        for (QuestionsViewModel.Question question : questionsViewModel.questions.getValue()) {
-            addQuestionView(questionsContainer, question);
+        } else {
+            for (QuestionsViewModel.Question question : questionsViewModel.questions.getValue()) {
+                addQuestionView(questionsContainer, question);
+            }
         }
 
         questionsViewModel.questions.observe(this, new Observer<ArrayList<QuestionsViewModel.Question>>() {
@@ -150,7 +150,7 @@ public class QuestionsFragment extends Fragment {
         protected Void doInBackground(DummyQuestion... questions) {
             for (DummyQuestion question : questions) {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(10000);
                     publishProgress(question);
                 } catch (Exception ex) {
                     ex.printStackTrace();
