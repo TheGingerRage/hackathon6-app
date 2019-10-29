@@ -88,8 +88,7 @@ public class ProfileFragment extends Fragment {
                 if (connections.isEmpty()) {
                     return;
                 }
-
- //               activityAdapter.notifyDataSetChanged();
+                activityAdapter.notifyDataSetChanged();
 
                 updateConnectionCountView(root);
                 updateBadgeViews(root);
