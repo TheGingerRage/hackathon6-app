@@ -14,6 +14,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.bl.StaticResources;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ProfileCreator extends Fragment {
     private ProfileCreatorViewModel profileCreatorViewModel;
 
@@ -35,18 +38,26 @@ public class ProfileCreator extends Fragment {
                 EditText location = root.findViewById(R.id.profileLocation);
                 EditText socialLinks = root.findViewById(R.id.profileSocialLinks);
                 
-                StaticResources.Main_Profile.FirstName = firstName.getText().toString();
-                StaticResources.Main_Profile.LastName = lastName.getText().toString();
-                StaticResources.Main_Profile.Company = company.getText().toString();
-                StaticResources.Main_Profile.Title = title.getText().toString();
-                StaticResources.Main_Profile.Email = email.getText().toString();
-                //StaticResources.Main_Profile.Location = firstName.getText().toString();
-                StaticResources.Main_Profile.TwitterHandle = socialLinks.getText().toString();
-
+                StaticResources.Main_Profile.firstName = firstName.getText().toString();
+                StaticResources.Main_Profile.lastName = lastName.getText().toString();
+                StaticResources.Main_Profile.company = company.getText().toString();
+                StaticResources.Main_Profile.title = title.getText().toString();
+                StaticResources.Main_Profile.email = email.getText().toString();
+                StaticResources.Main_Profile.location = location.getText().toString();
+                StaticResources.Main_Profile.socialLinks = ParseSocialLinks(socialLinks.getText().toString());
             }
         });
 
 
         return root;
+    }
+
+    private ArrayList<String> ParseSocialLinks(String text){
+        String[] socialLinks = text.split(";");
+
+        ArrayList<String> parsedSocialLinks = new ArrayList<String>();
+        parsedSocialLinks.addAll(Arrays.asList(socialLinks));
+
+        return parsedSocialLinks;
     }
 }
