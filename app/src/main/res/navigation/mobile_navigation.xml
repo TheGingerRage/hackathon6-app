@@ -14,20 +14,26 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.hackathon6_app.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.example.hackathon6_app.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="@string/menu_agenda"
+        tools:layout="@layout/fragment_agenda" />
 
     <fragment
         android:id="@+id/nav_tools"
         android:name="com.example.hackathon6_app.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
+        android:label="@string/menu_lounge"
         tools:layout="@layout/fragment_tools" />
+
+    <fragment
+        android:id="@+id/nav_speakers"
+        android:name="com.example.hackathon6_app.ui.speakers.SpeakersFragment"
+        android:label="@string/menu_speakers"
+        tools:layout="@layout/fragment_speakers" />
 
     <fragment
         android:id="@+id/nav_share"
@@ -38,6 +44,6 @@
     <fragment
         android:id="@+id/nav_send"
         android:name="com.example.hackathon6_app.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
