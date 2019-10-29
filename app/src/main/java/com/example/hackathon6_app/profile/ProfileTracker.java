@@ -13,10 +13,12 @@ public class ProfileTracker {
     private static MutableLiveData<Integer> mPointCount;
     private static Integer totalEvents;
     private static Integer totalEngagements;
+    private static Integer totalGeneral;
 
     private final static Integer pointsPerConnection = 20;
     private final static Integer pointsPerEvent = 10;
     private final static Integer pointsPerEngagement = 5;
+    private final static Integer pointsPerGeneral = 5;
 
     private static ProfileTracker activityTracker = null;
 
@@ -26,6 +28,9 @@ public class ProfileTracker {
         mPointCount = new MutableLiveData<Integer>();
         totalEvents = 0;
         totalEngagements = 0;
+        totalGeneral = 0;
+
+        totalGeneral++;
         addActivity("General", "Signed in to nSight 2020 app");
     }
 
@@ -50,7 +55,8 @@ public class ProfileTracker {
         }
         points = (connectionCount * pointsPerConnection) +
                 (totalEvents * pointsPerEvent) +
-                (totalEngagements * pointsPerEngagement);
+                (totalEngagements * pointsPerEngagement) +
+                (totalGeneral * pointsPerGeneral);
         mPointCount.setValue(points);
     }
 
