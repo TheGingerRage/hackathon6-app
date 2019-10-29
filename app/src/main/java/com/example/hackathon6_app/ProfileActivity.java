@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -55,6 +56,8 @@ public class ProfileActivity extends NavigationActivity {
 
         TabLayout tabs = findViewById(R.id.pager_header);
         tabs.setupWithViewPager(mPager, false);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     public static class PageAdapter extends FragmentPagerAdapter {
