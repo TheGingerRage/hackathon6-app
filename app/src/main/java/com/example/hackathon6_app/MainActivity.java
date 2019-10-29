@@ -18,6 +18,7 @@ import androidx.navigation.ui.NavigationUI;
 
 //import com.example.hackathon6_app.bl.Profile;
 import com.example.hackathon6_app.profile.ProfileCard;
+import com.example.hackathon6_app.profile.ProfileTracker;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,6 +33,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private final ProfileTracker tracker = ProfileTracker.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     private void ProcessNewConnection(ProfileCard newConnection){
         LinearLayout scanLayout = findViewById(R.id.scanResult);
 
+        tracker.addConnection(newConnection);
 
         TextView nameText = findViewById(R.id.nameTextView);
         TextView titleText = findViewById(R.id.titleValueTextView);

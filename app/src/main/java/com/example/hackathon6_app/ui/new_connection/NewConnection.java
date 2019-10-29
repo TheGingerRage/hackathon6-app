@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.bl.Profile;
 import com.example.hackathon6_app.profile.ProfileCard;
-import com.example.hackathon6_app.ui.profile.ProfileViewModel;
+import com.example.hackathon6_app.profile.ProfileTracker;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,6 +27,7 @@ import java.io.IOException;
 public class NewConnection extends Fragment {
 
     private ProfileCard NewConnectionProfile = null;
+    private final ProfileTracker tracker = ProfileTracker.getInstance();
 
     public NewConnection(String newConnectionString){
         if(!newConnectionString.isEmpty()) {
@@ -39,8 +40,7 @@ public class NewConnection extends Fragment {
         NewConnectionViewModel newConnectionViewModel = ViewModelProviders.of(this).get(NewConnectionViewModel.class);
         View root = inflater.inflate(R.layout.fragment_share, container, false);
 
-        ProfileViewModel profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
-        profileViewModel.addConnection(NewConnectionProfile);
+        tracker.addConnection(NewConnectionProfile);
 
 
         TextView nameTextView = root.findViewById(R.id.nameTextView);

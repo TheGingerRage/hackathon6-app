@@ -18,11 +18,17 @@ import java.util.ArrayList;
 
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.profile.ProfileCard;
+import com.example.hackathon6_app.profile.ProfileTracker;
+import com.example.hackathon6_app.profile.UserProfile;
+
 
 public class ProfileFragment extends Fragment {
 
     private ProfileViewModel profileViewModel;
     private ArrayAdapter<String> activityAdapter;
+    private final ProfileTracker tracker = ProfileTracker.getInstance();
+    private final UserProfile currentUser = UserProfile.getInstance();
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -32,33 +38,33 @@ public class ProfileFragment extends Fragment {
         final TextView profileTitleLabel = root.findViewById(R.id.profileTitleLabel);
         profileTitleLabel.setText("Title");
         final TextView profileTitle = root.findViewById(R.id.profileTitle);
-        profileTitle.setText(profileViewModel.profileTitle);
+        profileTitle.setText(currentUser.title);
 
         final TextView profileCompanyLabel = root.findViewById(R.id.profileCompanyLabel);
         profileCompanyLabel.setText("Company");
         final TextView companyName = root.findViewById(R.id.companyName);
-        companyName.setText(profileViewModel.profileCompany);
+        companyName.setText(currentUser.company);
 
         final TextView profileLocationLabel = root.findViewById(R.id.profileLocationLabel);
         profileLocationLabel.setText("Location");
         final TextView profileLocation = root.findViewById(R.id.profileLocation);
-        profileLocation.setText(profileViewModel.profileLocation);
+        profileLocation.setText(currentUser.location);
 
         final TextView profileEmailLabel = root.findViewById(R.id.profileEmailLabel);
         profileEmailLabel.setText("Email");
         final TextView profileEmail = root.findViewById(R.id.profileEmail);
-        profileEmail.setText(profileViewModel.profileEmail);
+        profileEmail.setText(currentUser.email);
 
         final TextView profileSocialLinksLabel = root.findViewById(R.id.socialLinksLabel);
         profileSocialLinksLabel.setText("SocialLinks");
         ListView socialLinks = root.findViewById(R.id.socialLinks);
-        ArrayAdapter<String> socialAdapter = new ArrayAdapter(getContext(), R.layout.social_link_item, profileViewModel.profileSocialLinks);
+        ArrayAdapter<String> socialAdapter = new ArrayAdapter(getContext(), R.layout.social_link_item, currentUser.socialLinks);
         socialLinks.setAdapter(socialAdapter);
 
         final TextView profileAboutMeLabel = root.findViewById(R.id.profileAboutLabel);
         profileAboutMeLabel.setText("About Me");
         final TextView profileAbout = root.findViewById(R.id.profileAbout);
-        profileAbout.setText(profileViewModel.profileAbout);
+        profileAbout.setText(currentUser.about);
 
         final TextView influenceHeaderLabel = root.findViewById(R.id.influenceHeaderLabel);
         influenceHeaderLabel.setText("Influence");
@@ -67,7 +73,8 @@ public class ProfileFragment extends Fragment {
         activityHeaderLabel.setText("Activity");
 
         ListView activities = root.findViewById(R.id.profileActivityPane);
-        activityAdapter = new ArrayAdapter(getContext(), R.layout.profile_activity_item, profileViewModel.getActivities().getValue());
+        activityAdapter = new ArrayAdapter(getContext(), R.layout.profile_activity_item, tracker.getActivities().getValue());
+        ArrayList<String> temp = tracker.getActivities().getValue();
         activities.setAdapter(activityAdapter);
 
         updateBadgeViews(root);
@@ -75,20 +82,20 @@ public class ProfileFragment extends Fragment {
         updateEventCountView(root);
         updateEngagementCountView(root);
 
-        profileViewModel.mConnections.observe(this, new Observer<ArrayList<ProfileCard>>() {
-            @Override
-            public void onChanged(ArrayList<ProfileCard> questions) {
-                if (profileViewModel.mConnections.getValue().isEmpty()) {
-                    return;
-                }
-
-                activityAdapter.notifyDataSetChanged();
-
-                updateConnectionCountView(root);
-                updateBadgeViews(root);
-
-            }
-        });
+//        tracker.mConnections.observe(this, new Observer<ArrayList<ProfileCard>>() {
+//            @Override
+//            public void onChanged(ArrayList<ProfileCard> connections) {
+//                if (connections.isEmpty()) {
+//                    return;
+//                }
+//
+// //               activityAdapter.notifyDataSetChanged();
+//
+//                updateConnectionCountView(root);
+//                updateBadgeViews(root);
+//
+//            }
+//        });
 
 
         return root;
@@ -97,31 +104,31 @@ public class ProfileFragment extends Fragment {
     private void updateBadgeViews(View root) {
         final TextView badgePoints = root.findViewById(R.id.influenceBadgePoints);
         badgePoints.setText("(" +
-                profileViewModel.getPoints().getValue() +
+                tracker.getPoints().getValue() +
                 " points)"
         );
 
         final ImageView badgeImage = root.findViewById(R.id.influenceBadgeImage);
-        final Integer points = profileViewModel.getPoints().getValue();
-        badgeImage.setImageResource(profileViewModel.getBadgeImage(profileViewModel.getPoints().getValue()));
+        final Integer points = tracker.getPoints().getValue();
+        badgeImage.setImageResource(tracker.getBadgeImage(tracker.getPoints().getValue()));
 
         final TextView badgeName = root.findViewById(R.id.influenceBadgeName);
-        badgeName.setText(profileViewModel.getBadgeName(profileViewModel.getPoints().getValue()));
+        badgeName.setText(tracker.getBadgeName(tracker.getPoints().getValue()));
     }
 
     private void updateConnectionCountView(View root) {
         final TextView connectionCount = root.findViewById(R.id.influenceConnectionsCount);
-        connectionCount.setText(String.valueOf(profileViewModel.getConnectionCount()));
+        connectionCount.setText(String.valueOf(tracker.getConnectionCount()));
     }
 
     private void updateEventCountView(View root) {
         final TextView eventCount = root.findViewById(R.id.influenceEventsCount);
-        eventCount.setText(String.valueOf(profileViewModel.getEventCount()));
+        eventCount.setText(String.valueOf(tracker.getEventCount()));
     }
 
     private void updateEngagementCountView(View root) {
         final TextView engagementCount = root.findViewById(R.id.influenceEngagementsCount);
-        engagementCount.setText(String.valueOf(profileViewModel.getEngagementCount()));
+        engagementCount.setText(String.valueOf(tracker.getEngagementCount()));
     }
 
 }
