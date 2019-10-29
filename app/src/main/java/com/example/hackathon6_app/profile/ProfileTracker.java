@@ -13,12 +13,10 @@ public class ProfileTracker {
     private static MutableLiveData<Integer> mPointCount;
     private static Integer totalEvents;
     private static Integer totalEngagements;
-    private static Integer totalGeneral;
 
     private final static Integer pointsPerConnection = 20;
     private final static Integer pointsPerEvent = 10;
     private final static Integer pointsPerEngagement = 5;
-    private final static Integer pointsPerGeneral = 5;
 
     private static ProfileTracker activityTracker = null;
 
@@ -28,9 +26,8 @@ public class ProfileTracker {
         mPointCount = new MutableLiveData<Integer>();
         totalEvents = 0;
         totalEngagements = 0;
-        totalGeneral = 0;
 
-        totalGeneral++;
+        totalEngagements++;
         addActivity("General", "Signed in to nSight 2020 app");
     }
 
@@ -55,8 +52,7 @@ public class ProfileTracker {
         }
         points = (connectionCount * pointsPerConnection) +
                 (totalEvents * pointsPerEvent) +
-                (totalEngagements * pointsPerEngagement) +
-                (totalGeneral * pointsPerGeneral);
+                (totalEngagements * pointsPerEngagement);
         mPointCount.setValue(points);
     }
 
@@ -67,14 +63,14 @@ public class ProfileTracker {
     public static int getBadgeImage(Integer points) {
         if (points > 500) {
             return R.mipmap.badge_super_hero;
-        } else if (points > 400) {
-            return R.mipmap.badge_trophy;
         } else if (points > 300) {
-            return R.mipmap.badge_handshake;
-        } else if (points > 200) {
-            return R.mipmap.badge_navigator;
+            return R.mipmap.badge_trophy;
         } else if (points > 100) {
             return R.mipmap.badge_idea_notebook;
+        } else if (points > 50) {
+            return R.mipmap.badge_craftsman;
+        } else if (points > 25) {
+            return R.mipmap.badge_artisan;
         } else {
             return R.mipmap.badge_fun;
         }
@@ -83,14 +79,14 @@ public class ProfileTracker {
     public static String getBadgeName(Integer points) {
         if (points > 500) {
             return "Super Hero";
-        } else if (points > 400) {
-            return "Champion";
         } else if (points > 300) {
-            return "Craftsman";
-        } else if (points > 200) {
-            return "Artisan";
+            return "Champion";
         } else if (points > 100) {
             return "Inventor";
+        } else if (points > 50) {
+            return "Craftsman";
+        } else if (points > 25) {
+            return "Artisan";
         } else {
             return "Fun";
         }
@@ -148,16 +144,16 @@ public class ProfileTracker {
         }
         switch (type) {
             case "ProfileCard":
-                activities.add("Connected with " + activityName);
+                activities.add(0,"Connected with " + activityName);
                 break;
             case "Event":
-                activities.add("Attended "  + activityName);
+                activities.add(0,"Attended "  + activityName);
                 break;
             case "Engagement":
-                activities.add("Participated in " + activityName);
+                activities.add(0,"Participated in " + activityName);
                 break;
             default:
-                activities.add(activityName);
+                activities.add(0,activityName);
         }
         mActivities.setValue(activities);
         calculatePoints();

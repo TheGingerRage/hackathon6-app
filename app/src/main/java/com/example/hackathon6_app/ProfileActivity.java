@@ -39,22 +39,22 @@ public class ProfileActivity extends NavigationActivity {
         TabLayout tabs = findViewById(R.id.pager_header);
         tabs.setupWithViewPager(mPager, false);
 
-        Button button = findViewById(R.id.goto_first);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View v) {
-                mPager.setCurrentItem(0);
-            }
-        });
-
-        button = findViewById(R.id.goto_last);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPager.setCurrentItem(NUM_ITEMS - 1);
-            }
-        });
+//        Button button = findViewById(R.id.goto_first);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//
+//            public void onClick(View v) {
+//                mPager.setCurrentItem(0);
+//            }
+//        });
+//
+//        button = findViewById(R.id.goto_last);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mPager.setCurrentItem(NUM_ITEMS - 1);
+//            }
+//        });
     }
 
     public static class PageAdapter extends FragmentPagerAdapter {
