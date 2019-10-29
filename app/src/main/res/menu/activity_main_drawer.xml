@@ -38,17 +38,9 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="@string/menu_share" />
             <item
-                android:id="@+id/nav_qr"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="My Code"/>
-            <item
                 android:id="@+id/nav_profile"
                 android:icon="@drawable/ic_menu_person_outline"
                 android:title="@string/menu_profile" />
-            <item
-                android:id="@+id/nav_profile_creator"
-                android:title="Create Profile"/>
-
         </menu>
     </item>
 
@@ -58,6 +50,10 @@
                 android:id="@+id/nav_poll"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_poll" />"
+            <item
+                android:id="@+id/nav_profile_creator"
+                android:icon="@drawable/ic_menu_person_outline"
+                android:title="Create Profile"/>
         </menu>
     </item>
 
