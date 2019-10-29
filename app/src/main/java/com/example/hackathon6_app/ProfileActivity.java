@@ -29,7 +29,7 @@ import java.io.IOException;
 
 public class ProfileActivity extends NavigationActivity {
 
-    private static final int NUM_ITEMS = 5;
+    private static final int NUM_ITEMS = 4;
 
     private PageAdapter mAdapter;
     private ViewPager mPager;
