@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ProfileTracker {
 
     private static MutableLiveData<ArrayList<String>> mActivities;
-    private static MutableLiveData<ArrayList<ProfileCard>> mConnections = new MutableLiveData<ArrayList<ProfileCard>>();
+    public static MutableLiveData<ArrayList<ProfileCard>> mConnections = new MutableLiveData<ArrayList<ProfileCard>>();
     private static MutableLiveData<Integer> mPointCount;
     private static Integer totalEvents;
     private static Integer totalEngagements;

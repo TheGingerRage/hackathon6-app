@@ -4,22 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.ImageView;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import java.util.ArrayList;
-
 import com.example.hackathon6_app.R;
 import com.example.hackathon6_app.profile.ProfileCard;
 import com.example.hackathon6_app.profile.ProfileTracker;
 import com.example.hackathon6_app.profile.UserProfile;
+
+import java.util.ArrayList;
 
 
 public class ProfileFragment extends Fragment {
@@ -82,20 +82,20 @@ public class ProfileFragment extends Fragment {
         updateEventCountView(root);
         updateEngagementCountView(root);
 
-//        tracker.mConnections.observe(this, new Observer<ArrayList<ProfileCard>>() {
-//            @Override
-//            public void onChanged(ArrayList<ProfileCard> connections) {
-//                if (connections.isEmpty()) {
-//                    return;
-//                }
-//
-// //               activityAdapter.notifyDataSetChanged();
-//
-//                updateConnectionCountView(root);
-//                updateBadgeViews(root);
-//
-//            }
-//        });
+        tracker.mConnections.observe(this, new Observer<ArrayList<ProfileCard>>() {
+            @Override
+            public void onChanged(ArrayList<ProfileCard> connections) {
+                if (connections.isEmpty()) {
+                    return;
+                }
+
+ //               activityAdapter.notifyDataSetChanged();
+
+                updateConnectionCountView(root);
+                updateBadgeViews(root);
+
+            }
+        });
 
 
         return root;
