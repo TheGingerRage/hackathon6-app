@@ -1,5 +1,7 @@
 package com.example.hackathon6_app.profile;
 
+import com.example.hackathon6_app.bl.StaticResources;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,14 +22,14 @@ public class UserProfile extends ProfileCard {
     }
 
     private void loadDummyProfile() {
-        firstName = "Tracy";
-        lastName = "Bragdon";
-        company = "nCino";
-        location = "Wilmington, NC";
-        title = "FunLeSS developer";
-        email = "tracy.bragdon@ncino.com";
-        about =  "I love ice cream and sweep rowing";
-        socialLinks = new ArrayList(Arrays.asList("https://www.linkedin.com/in/tracybragdon/"));
+        firstName = StaticResources.Main_Profile.firstName;
+        lastName = StaticResources.Main_Profile.lastName;
+        company = StaticResources.Main_Profile.company;
+        location =StaticResources.Main_Profile.location;
+        title = StaticResources.Main_Profile.title;
+        email = StaticResources.Main_Profile.email;
+        about =  StaticResources.Main_Profile.about;
+        socialLinks = StaticResources.Main_Profile.socialLinks;
     }
 
 }
