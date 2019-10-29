@@ -28,10 +28,7 @@
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_qrcode"
             android:title="@string/menu_share" />
-        <item
-            android:id="@+id/nav_send"
-            android:icon="@drawable/ic_menu_portfolio"
-            android:title="@string/menu_profile" />
+
     </group>
 
     <item android:title="Communicate">
