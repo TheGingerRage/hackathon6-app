@@ -10,12 +10,15 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Observer;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.hackathon6_app.bl.StaticResources;
 import com.example.hackathon6_app.profile.ProfileCard;
 import com.example.hackathon6_app.profile.ProfileTracker;
 import com.example.hackathon6_app.ui.PlaceholderFragment;
 import com.example.hackathon6_app.ui.QR.QRFragment;
+import com.example.hackathon6_app.ui.game.GameFragment;
 import com.example.hackathon6_app.ui.poll.PollFragment;
 import com.example.hackathon6_app.ui.profile.ProfileFragment;
 import com.example.hackathon6_app.ui.questions.QuestionsFragment;
@@ -29,7 +32,7 @@ import java.io.IOException;
 
 public class ProfileActivity extends NavigationActivity {
 
-    private static final int NUM_ITEMS = 4;
+    private static final int NUM_ITEMS = 3;
 
     private PageAdapter mAdapter;
     private ViewPager mPager;
@@ -67,15 +70,12 @@ public class ProfileActivity extends NavigationActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:
-                    return new PollFragment();
                 case 1:
-                    return new QuestionsFragment();
-                case 2:
                     return new ProfileFragment();
-                case 3:
+                case 2:
                     return new QRFragment();
-                case 4:
+                case 0:
+                    return new GameFragment();
                 default:
                     return new PlaceholderFragment();
             }
@@ -84,15 +84,12 @@ public class ProfileActivity extends NavigationActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0:
-                    return "Poll Sample";
                 case 1:
-                    return "Questions Sample";
-                case 2:
                     return "Profile";
-                case 3:
+                case 2:
                     return "My Code";
-                case 4:
+                case 0:
+                    return "Engage";
                 default:
                     return "Replace Me!";
             }
@@ -149,8 +146,6 @@ public class ProfileActivity extends NavigationActivity {
         nameText.setText(newConnection.firstName + " " + newConnection.lastName);
         titleText.setText(newConnection.title);
         companyText.setText(newConnection.company);
-
-
     }
 
     private ProfileCard DeserializeProfile(String jsonProfile){
