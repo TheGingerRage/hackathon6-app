@@ -59,19 +59,8 @@
         tools:layout="@layout/fragment_new_connection"/>
 
     <fragment
-        android:id="@+id/nav_poll"
-        android:name="com.example.hackathon6_app.ui.poll.PollFragment"
-        android:label="@string/menu_poll"
-        tools:layout="@layout/fragment_poll" />
-
-    <activity
-        android:id="@+id/nav_main"
-        android:name="com.example.hackathon6_app.MainActivity"
-        android:label="@string/menu_home" />
-
-    <activity
-        android:id="@+id/nav_profile"
-        android:name="com.example.hackathon6_app.ProfileActivity"
-        android:label="@string/menu_profile" />
-
+        android:id="@+id/nav_profile_creator"
+        android:name="com.example.hackathon6_app.ui.create_profile.ProfileCreator"
+        android:label="Create Profile"
+        tools:layout="@layout/fragment_profile_creator"/>
 </navigation>

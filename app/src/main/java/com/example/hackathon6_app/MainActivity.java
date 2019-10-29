@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home,R.id.nav_qr,R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_home,R.id.nav_qr, R.id.nav_profile_creator, R.id.nav_gallery, R.id.nav_slideshow,
                 R.id.nav_tools, R.id.nav_profile, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
@@ -110,15 +110,27 @@ public class MainActivity extends AppCompatActivity {
 
         tracker.addConnection(newConnection);
 
+        scanLayout.setVisibility(View.VISIBLE);
+        TextView congratsText = findViewById(R.id.congratsText);
         TextView nameText = findViewById(R.id.nameTextView);
+        TextView title = findViewById(R.id.titleLabelTextView);
         TextView titleText = findViewById(R.id.titleValueTextView);
+        TextView company = findViewById(R.id.companyLabelTextView);
         TextView companyText = findViewById(R.id.companyValueTextView);
+
+        congratsText.setVisibility(View.VISIBLE);
+
+        title.setVisibility(View.VISIBLE);
+        company.setVisibility(View.VISIBLE);
+
+        titleText.setVisibility(View.VISIBLE);
+        companyText.setVisibility(View.VISIBLE);
 
         nameText.setText(newConnection.firstName + " " + newConnection.lastName);
         titleText.setText(newConnection.title);
         companyText.setText(newConnection.company);
 
-        scanLayout.setVisibility(View.VISIBLE);
+
     }
 
     private ProfileCard DeserializeProfile(String jsonProfile){

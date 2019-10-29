@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.example.hackathon6_app.R;
 //import com.example.hackathon6_app.bl.Profile;
 import com.example.hackathon6_app.profile.ProfileCard;
 //import com.example.hackathon6_app.ui.new_connection.NewConnection;
+import com.example.hackathon6_app.bl.StaticResources;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -48,20 +50,19 @@ public class QRFragment extends Fragment {
         ImageView qrCodeImg = root.findViewById(R.id.qrCodeImage);
         ScanButton = root.findViewById(R.id.scanButton);
 
-        final String profileText = "stephen.middaugh@ncino.com::4234831361::@stephenm::I am a software developer in Wilmington, NC.";
+        LinearLayout scanResultLayout = root.findViewById(R.id.scanResult);
+        scanResultLayout.setVisibility(View.INVISIBLE);
 
-        ProfileCard userProfile = new ProfileCard(
-            "Stephen",
-            "Middaugh",
-            "nCino",
-            "Developer",
-            "stephen.middaugh@ncino.com",
-            "Wilmington, NC",
-            "I ama software engineer living in Wilmington, NC",
-            new ArrayList(Arrays.asList("@middaughs"))
-        );
+//        Profile userProfile = new Profile();
+//        userProfile.FirstName = "Stephen";
+//        userProfile.LastName = "Middaugh";
+//        userProfile.Company = "nCino";
+//        userProfile.TwitterHandle = "@middaughs";
+//        userProfile.Email = "stephen.middaugh@ncino.com";
+//        userProfile.AboutMe = "I am a software engineer living in Wilmington, NC";
+//        userProfile.Title = "Software Developer";
 
-        final String jsonProfile = SerializeProfile(userProfile);
+        final String jsonProfile = SerializeProfile(StaticResources.Main_Profile);
 
         ObjectMapper mapper = new ObjectMapper();
 

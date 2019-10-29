@@ -1,0 +1,52 @@
+package com.example.hackathon6_app.ui.create_profile;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.example.hackathon6_app.R;
+import com.example.hackathon6_app.bl.StaticResources;
+
+public class ProfileCreator extends Fragment {
+    private ProfileCreatorViewModel profileCreatorViewModel;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        profileCreatorViewModel =
+                ViewModelProviders.of(this).get(ProfileCreatorViewModel.class);
+        final View root = inflater.inflate(R.layout.fragment_profile_creator, container, false);
+
+        Button saveButton = root.findViewById(R.id.profileSaveButton);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstName = root.findViewById(R.id.profileFirstName);
+                EditText lastName = root.findViewById(R.id.profileLastName);
+                EditText company = root.findViewById(R.id.profileCompany);
+                EditText title = root.findViewById(R.id.profileTitle);
+                EditText email = root.findViewById(R.id.profileEmail);
+                EditText location = root.findViewById(R.id.profileLocation);
+                EditText socialLinks = root.findViewById(R.id.profileSocialLinks);
+                
+                StaticResources.Main_Profile.FirstName = firstName.getText().toString();
+                StaticResources.Main_Profile.LastName = lastName.getText().toString();
+                StaticResources.Main_Profile.Company = company.getText().toString();
+                StaticResources.Main_Profile.Title = title.getText().toString();
+                StaticResources.Main_Profile.Email = email.getText().toString();
+                //StaticResources.Main_Profile.Location = firstName.getText().toString();
+                StaticResources.Main_Profile.TwitterHandle = socialLinks.getText().toString();
+
+            }
+        });
+
+
+        return root;
+    }
+}
